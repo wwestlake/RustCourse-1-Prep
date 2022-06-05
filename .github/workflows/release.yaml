@@ -56,7 +56,6 @@ jobs:
           name: Clippy Output
   test:
     name: Test
-    needs: Check
     runs-on: ${{matrix.os}}
     strategy:
       matrix:
@@ -72,7 +71,7 @@ jobs:
         run: cargo test
   release:
     name: Release Packaging
-    needs: Test
+    needs: [Test, Check]
     env:
       PROJECT_NAME_UNDERSCORE: lesson-1
     runs-on: ${{matrix.os}}

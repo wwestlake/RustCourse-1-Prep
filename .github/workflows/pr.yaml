@@ -56,7 +56,6 @@ jobs:
           name: Clippy Output
   test:
     name: Test
-    needs: Check
     runs-on: ${{matrix.os}}
     strategy:
       matrix:

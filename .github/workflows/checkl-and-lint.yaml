@@ -91,12 +91,13 @@ jobs:
           override: true
       - name: Release Build
         run: cargo build --release
-      - name: 'Upload Artifact'
+      - name: 'Upload Ubuntu'
         uses: actions/upload-artifact@v2
         if: matrix.os == 'ubuntu-latest'
         with:
           name: ${{ env.PROJECT_NAME_UNDERSCORE }}
           path: target/release/${{ env.PROJECT_NAME_UNDERSCORE }}
+      - name: 'Upload Windows'
         uses: actions/upload-artifact@v2
         if: matrix.os == 'windows-latest'
         with:

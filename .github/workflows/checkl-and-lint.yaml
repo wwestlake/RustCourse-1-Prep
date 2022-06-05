@@ -76,7 +76,7 @@ jobs:
     name: Release Packaging
     needs: Test
     env:
-      PROJECT_NAME_UNDERSCORE: rust_course_1_prep
+      PROJECT_NAME_UNDERSCORE: lesson-1
     runs-on: ${{matrix.os}}
     strategy:
       matrix:

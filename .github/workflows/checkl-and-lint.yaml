@@ -72,17 +72,11 @@ jobs:
           override: true
       - name: Generate test result and coverage report
         run: cargo test
-      - name: Upload test results
-        uses: EnricoMi/publish-unit-test-result-action@v1
-        with:
-          check_name: Test Results
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          files: results.xml
   release:
     name: Release Packaging
     needs: Test
     env:
-      PROJECT_NAME_UNDERSCORE: rust_ci_github_actions_workflow
+      PROJECT_NAME_UNDERSCORE: rust_course_1_prep
     runs-on: ${{matrix.os}}
     strategy:
       matrix:

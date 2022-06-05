@@ -2,7 +2,9 @@ fn first() {
     println!("First!")
 }
 
-fn second() {}
+fn second() {
+    println!("First!")
+}
 
 fn main() {
     println!("Hello, world!");

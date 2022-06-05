@@ -11,7 +11,7 @@ jobs:
     runs-on: ${{matrix.os}}
     strategy:
       matrix:
-        os: [ubuntu-latest, windows-latest]
+        os: [ubuntu-latest, windows-latest, macos-latest]
     steps:
       - uses: actions/checkout@v2
       - uses: actions-rs/toolchain@v1
@@ -59,7 +59,7 @@ jobs:
     runs-on: ${{matrix.os}}
     strategy:
       matrix:
-        os: [ubuntu-latest, windows-latest]
+        os: [ubuntu-latest, windows-latest, macos-latest]
     steps:
       - uses: actions/checkout@v2
       - uses: actions-rs/toolchain@v1
@@ -93,11 +93,15 @@ jobs:
         if: matrix.os == 'ubuntu-latest'
         with:
           name: ${{ env.PROJECT_NAME_UNDERSCORE }}
-          path: target/release/${{ env.PROJECT_NAME_UNDERSCORE }}
+          path: target/release/${{ env.PROJECT_NAME_UNDERSCORE }}_linux
       - name: 'Upload Windows'
         uses: actions/upload-artifact@v2
         if: matrix.os == 'windows-latest'
         with:
           name: ${{ env.PROJECT_NAME_UNDERSCORE }}.exe
-          path: target/release/${{ env.PROJECT_NAME_UNDERSCORE }}.exe
+          path: target/release/${{ env.PROJECT_NAME_UNDERSCORE }}_windows
+        if: matrix.os == 'macos-latest'
+        with:
+          name: ${{ env.PROJECT_NAME_UNDERSCORE }}
+          path: target/release/${{ env.PROJECT_NAME_UNDERSCORE }}_macos
 

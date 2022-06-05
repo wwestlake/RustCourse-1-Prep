@@ -92,8 +92,14 @@ jobs:
       - name: Release Build
         run: cargo build --release
       - name: 'Upload Artifact'
+        if: matrix.os == 'ubuntu-latest'
         uses: actions/upload-artifact@v2
         with:
           name: ${{ env.PROJECT_NAME_UNDERSCORE }}
           path: target/release/${{ env.PROJECT_NAME_UNDERSCORE }}
+        if: matrix.os == 'windows-latest'
+        uses: actions/upload-artifact@v2
+        with:
+          name: ${{ env.PROJECT_NAME_UNDERSCORE }}.exe
+          path: target/release/${{ env.PROJECT_NAME_UNDERSCORE }}.exe
 

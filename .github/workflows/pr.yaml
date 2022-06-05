@@ -1,8 +1,6 @@
 on:
   pull_request:
     branches: [master]
-  push:
-    branches: [master]
 
 
 name: Check and Lint
@@ -72,35 +70,4 @@ jobs:
           override: true
       - name: Generate test result and coverage report
         run: cargo test
-  release:
-    name: Release Packaging
-    needs: Test
-    env:
-      PROJECT_NAME_UNDERSCORE: lesson-1
-    runs-on: ${{matrix.os}}
-    strategy:
-      matrix:
-        os: [ubuntu-latest, windows-latest]
-    steps:
-      - uses: actions/checkout@v2
-      - run: mkdir -p target/release
-      - uses: actions-rs/toolchain@v1
-        with:
-          profile: minimal
-          toolchain: stable
-          override: true
-      - name: Release Build
-        run: cargo build --release
-      - name: 'Upload Ubuntu'
-        uses: actions/upload-artifact@v2
-        if: matrix.os == 'ubuntu-latest'
-        with:
-          name: ${{ env.PROJECT_NAME_UNDERSCORE }}
-          path: target/release/${{ env.PROJECT_NAME_UNDERSCORE }}
-      - name: 'Upload Windows'
-        uses: actions/upload-artifact@v2
-        if: matrix.os == 'windows-latest'
-        with:
-          name: ${{ env.PROJECT_NAME_UNDERSCORE }}.exe
-          path: target/release/${{ env.PROJECT_NAME_UNDERSCORE }}.exe
 

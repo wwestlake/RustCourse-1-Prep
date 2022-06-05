@@ -100,6 +100,8 @@ jobs:
         with:
           name: ${{ env.PROJECT_NAME_UNDERSCORE }}.exe
           path: target/release/${{ env.PROJECT_NAME_UNDERSCORE }}_windows
+      - name: 'Upload MacOS'
+        uses: actions/upload-artifact@v2
         if: matrix.os == 'macos-latest'
         with:
           name: ${{ env.PROJECT_NAME_UNDERSCORE }}

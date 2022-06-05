@@ -4,10 +4,11 @@ fn first() {
 }
 
 fn second() {
-    
+
 }
 
 fn main() {
     println!("Hello, world!");
     first();
+    second();
 }
